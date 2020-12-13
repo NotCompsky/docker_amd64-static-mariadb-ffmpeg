@@ -86,6 +86,11 @@ RUN apk add --no-cache \
 	&& make install \
 	\
 	&& cd /git/FFmpeg \
+	&& mv /usr/local/lib/pkgconfig/x265.pc /usr/local/lib/pkgconfig/x264.pc /usr/lib/pkgconfig/ \
+	&& rm /usr/lib/libnuma.so \
+	&& mkdir -p /usr/local/x86_64-linux-musl/usr \
+	&& ln -s /usr/lib /usr/local/x86_64-linux-musl/usr/lib \
+	&& /usr/local/x86_64-linux-musl/bin/ld -lnuma --verbose \
 	&& LDFLAGS="-static" \
 		./configure \
 			--cc="$CC" \
