@@ -1,4 +1,4 @@
-FROM notcompsky/static-mariadb:latest
+FROM notcompsky/amd64-static-mariadb:latest
 
 #	&& git clone https://aomedia.googlesource.com/aom \
 #	&& mkdir aom/aom_build \
