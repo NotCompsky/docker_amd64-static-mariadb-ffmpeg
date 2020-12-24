@@ -59,7 +59,7 @@ RUN apk add --no-cache \
 		--disable-postproc \
 		--enable-vp9-highbitdepth \
 		--as=yasm \
-	&& make install \
+	&& make -j$(nproc) install \
 	\
 	&& cd /git/x264 \
 	&& LDFLAGS="-static" ./configure \
@@ -73,7 +73,7 @@ RUN apk add --no-cache \
 		--disable-avs \
 		--disable-swscale \
 		--disable-lsmash \
-	&& make install \
+	&& make -j$(nproc) install \
 	\
 	&& cd /git/x265/build \
 	&& cmake \
@@ -83,7 +83,7 @@ RUN apk add --no-cache \
 		-DENABLE_SHARED=OFF \
 		-DENABLE_CLI=OFF \
 		../source \
-	&& make install \
+	&& make -j$(nproc) install \
 	\
 	&& cd /git/FFmpeg \
 	&& mv /usr/local/lib/pkgconfig/x265.pc /usr/local/lib/pkgconfig/x264.pc /usr/lib/pkgconfig/ \
@@ -123,7 +123,7 @@ RUN apk add --no-cache \
 			--enable-libx264 \
 			--enable-libx265 \
 			--enable-libvpx \
-	&& make install \
+	&& make -j$(nproc) install \
 	\
 	&& curl -s https://raw.githubusercontent.com/dtschump/CImg/master/CImg.h > /usr/include/CImg.h \
 	\
